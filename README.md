@@ -1,10 +1,10 @@
-# 🎭 Menu de Temas - Hyprland
+# Menu de Temas - Hyprland
 
 Este documento descreve como funciona o sistema de temas do projeto, incluindo a integração com o menu (rofi) e o uso de symlinks para aplicar estilos aos componentes.
 
 ---
 
-## 🧠 Conceito Geral
+## Conceito Geral
 
 O sistema de temas é baseado em **substituição de arquivos via symlinks**, ao invés de variáveis globais.
 
@@ -12,7 +12,7 @@ Cada componente (Waybar, Rofi, Hyprland, etc.) possui seus próprios arquivos de
 
 ---
 
-## 📁 Estrutura de Temas
+## Estrutura de Temas
 
 Os temas são organizados em diretórios contendo variações de arquivos de estilo para cada componente.
 
@@ -33,7 +33,7 @@ themes/
 
 ---
 
-## 🔗 Uso de Symlinks
+## Uso de Symlinks
 
 Ao invés de editar arquivos diretamente, o sistema utiliza **links simbólicos** para apontar para os arquivos do tema ativo.
 
@@ -52,7 +52,7 @@ Isso permite:
 
 ---
 
-## 🎛️ Menu de Temas (Rofi)
+## Menu de Temas (Rofi)
 
 O menu de temas funciona como interface para seleção do tema ativo.
 
@@ -68,7 +68,7 @@ Fluxo:
 
 ---
 
-## 🔁 Fluxo Completo
+## Fluxo Completo
 
 ```bash
 Usuário abre menu (rofi)
@@ -86,7 +86,7 @@ Novo tema aplicado
 
 ---
 
-## ⚙️ Scripts
+## Scripts
 
 Os scripts são responsáveis por:
 
@@ -102,7 +102,7 @@ Exemplo de ações realizadas:
 
 ---
 
-## 🚀 Vantagens da Abordagem
+## Vantagens da Abordagem
 
 * Não depende de variáveis globais
 * Cada componente mantém sua própria configuração
@@ -112,7 +112,7 @@ Exemplo de ações realizadas:
 
 ---
 
-## 🧩 Observação
+## Observação
 
 Existe um arquivo `colors.env` no projeto, mas ele **não é utilizado no fluxo atual**.
 
@@ -120,7 +120,7 @@ Ele está presente apenas como base para uma possível evolução futura do sist
 
 ---
 
-## 📌 Conclusão
+## Conclusão
 
 O sistema atual prioriza simplicidade e controle direto, utilizando symlinks como mecanismo principal de troca de temas.
 
