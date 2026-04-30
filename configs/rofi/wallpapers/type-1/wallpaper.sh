@@ -4,7 +4,10 @@ dir="$HOME/Documentos/dotfiles/configs/rofi/wallpapers/type-1"
 theme="style-1"
 
 WALLDIR="$HOME/Documentos/dotfiles/wallpapers"
-CACHE="/tmp/rofi-wallpaper-preview.png"
+CACHE="/tmp/rofi-wallpaper-preview-$(date +%s).png"
+
+# limpa previews antigos
+rm -f /tmp/rofi-wallpaper-preview-*.png
 
 # ===============================
 # LISTA DE WALLPAPERS
@@ -44,6 +47,7 @@ if [ ! -d "$THEME_DIR" ]; then
 fi
 
 # carrega cores do tema atual
+unset BG FG ACCENT CRITICAL
 source "$THEME_DIR/colors.env"
 
 # ===============================
@@ -80,9 +84,6 @@ waybar &
 ln -sfn \
   "$THEME_DIR/dunst/dunstrc" \
   "$HOME/.config/dunst/dunstrc"
-pkill dunst 2>/dev/null
-sleep 0.2
-dunst &
 
 # ===============================
 # HYPRLOCK + HYPRLAND
@@ -120,7 +121,14 @@ magick "$WALLDIR/$choice" \
   -bordercolor "$ACCENT" \
   -border 1 \
   "$CACHE"
-sleep 0.1
+sleep 0.3
+
+# ===============================
+# RESTART DUNST (GARANTE NOVAS CORES)
+# ===============================
+pkill dunst 2>/dev/null
+sleep 0.2
+dunst &
 
 # ===============================
 # NOTIFICAÇÃO FINAL
