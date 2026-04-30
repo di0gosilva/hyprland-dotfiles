@@ -1,0 +1,161 @@
+// -*- mode: jsonc -*-
+{    
+    // Waybar layer (top|bottom)
+    "layer": "top",
+    // Waybar position (top|bottom|left|right)
+    "position": "top",
+    "height": 26,
+    // "margin-top": 8,
+    // "width": 1350,
+    "spacing": 0, // Gaps between modules (4px)
+
+    // Choose the order of the modules
+    "modules-left": [
+        "custom/weather",
+        "clock",
+        "mpris"
+    ],
+
+    "modules-center": [
+        "hyprland/workspaces"
+    ],
+
+    "modules-right": [
+        "pulseaudio",
+        "network",
+        "backlight",
+        "battery",
+        "custom/pacman"    
+    ],
+
+    // "custom/pacman": {
+    //     "format": "󰅢 {}",
+    //     "interval": 30,
+    //     "exec": "yay -Qu | wc -l",
+    //     "exec-tooltip": "yay -Qu | sed 's/ .*//'",
+    //     "on-click": "kitty sh -c 'yay -Syu --noconfirm --noansweredit --noanswerdiff --norebuild; echo Pronto - Pressione enter para sair; read'; pkill -SIGRTMIN+8 waybar",
+    //     "signal": 8,
+    //     "tooltip": false
+    // },
+
+    "custom/pacman": {
+        "format": "󰅢 {}",
+        "interval": 30,
+        "exec": "checkupdates | wc -l",
+        "exec-tooltip": "checkupdates",
+        "on-click": "kitty sh -c 'sudo pacman -Syu && yay -Sua; echo Pronto - Pressione enter para sair; read'; pkill -SIGRTMIN+8 waybar",
+        "signal": 8,
+        "tooltip": false
+    },
+
+    "clock": {
+        "format": "{:%H:%M}",
+        "format-alt": "{:%d-%m-%Y}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "timezone": "America/Sao_Paulo",
+        "calendar": {
+            "mode": "month",
+            "format": {
+                "months": "<span color='#B16286'><b>{}</b></span>",
+                "days": "<span color='#FBF1C7'><b>{}</b></span>",
+                "weekdays": "<span color='#FBF1C7'><b>{}</b></span>",
+                "today": "<span color='#B16286'><b><u>{}</u></b></span>"
+            }
+        }
+    },
+
+    "mpris": {
+        "player": "spotify",
+        "format": "{status_icon} {artist} - {title}",
+        "format-paused": "{player_icon} {status_icon}",
+        "format-stopped": "",
+        "player-icons": {
+            "spotify": ""
+        },
+        "status-icons": {
+            "paused": "⏸",
+            "playing": "▶",
+            "stopped": "⏹"
+        },
+        "ignored-players": ["google-chrome-stable"],
+        "max-length": 35,
+        "interval": 1,
+        "on-click": "playerctl -p spotify play-pause ",
+        "on-click-right": "playerctl -p spotify next",
+        "tooltip-format": "{artist} - {title}\nAlbum: {album}"
+    },
+
+    "custom/weather": {
+    "format": " {}",
+    "tooltip": true,
+    "interval": 1800,
+    "exec": "curl -s 'https://wttr.in/-27.6369,-48.6706?format=%t' | sed 's/+//g; s/C//g'",
+    "return-type": "text",
+    "on-click": "xdg-open https://wttr.in/Palhoça"
+    },
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "1": "λ", 
+            "2": "μ", 
+            "3": "π", 
+            "4": "σ", 
+            "5": "τ",
+            "active": "φ",
+            "default": "◯" // Default workspace icon
+        },
+        "persistent-workspaces": {
+            "*": 5 // 5 workspaces by default on every monitor
+        }
+    },
+
+    "backlight": {
+        // "device": "acpi_video1",
+        // "format-icons": ["", "", "", "", "", "", "", "", ""]
+        "format": "{icon} {percent}%",
+        "format-icons": ["󰛩", "󱩎", "󱩏", "󱩐", "󱩑", "󱩒", "󱩓", "󱩔", "󰛨"],
+        "format-alt": "{icon} {percent}%"
+    },
+
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-full": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-icons": ["", "", "", "", ""],
+        "format-alt": "{icon} {capacity}%",
+        "tooltip-format": "{timeTo}, {capacity}%"
+    },
+
+    "network": {
+        "format-wifi": " {essid}",
+        "format-ethernet": "{ipaddr}/{cidr}",
+        "tooltip-format": "{ifname}: {gwaddr}",
+        "format-linked": "{ifname} (No IP)",
+        "format-disconnected": "⚠ Desconectado",
+        "on-click": "iwgtk"
+    },
+
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon} {volume}%",
+        "format-bluetooth-muted": "󰸈",
+        "format-muted": "󰸈",
+        "format-source": "",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "phone": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol",
+        "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+    }
+}

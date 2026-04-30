@@ -1,0 +1,46 @@
+# Based on bira theme
+
+setopt prompt_subst
+
+() {
+
+local PR_USER PR_USER_OP PR_PROMPT PR_HOST
+
+# Check the UID
+if [[ $UID -ne 0 ]]; then # normal user
+  PR_USER="%F{$ZSH_FG_MAIN}%n%f"
+  PR_USER_OP="%F{$ZSH_FG_MAIN}%#%f"
+  PR_PROMPT="%F{$ZSH_FG_MAIN}➤ %f"
+else
+  PR_USER="%F{$ZSH_ERROR}%n%f"
+  PR_USER_OP="%F{$ZSH_ERROR}%#%f"
+  PR_PROMPT="%F{$ZSH_ERROR}➤ %f"
+fi
+
+# Check if we are on SSH or not
+if [[ -n "$SSH_CLIENT"  ||  -n "$SSH2_CLIENT" ]]; then
+  PR_HOST="%F{$ZSH_HOST_SSH}%M%f"
+else
+  PR_HOST="%F{$ZSH_FG_MAIN}%m%f"
+fi
+
+
+local return_code="%(?..%F{$ZSH_ERROR}%? ↵%f)"
+
+local user_host="${PR_USER}%F{$ZSH_ACCENT}@${PR_HOST}"
+local current_dir="%B%F{$ZSH_ACCENT}%~%f%b"
+local git_branch='$(git_prompt_info)'
+local venv_prompt='$(virtualenv_prompt_info)' 
+
+PROMPT="%F{$ZSH_ACCENT}╭─${venv_prompt}${user_host} ${current_dir} \$(ruby_prompt_info) ${git_branch}
+%F{$ZSH_ACCENT}╰─$PR_PROMPT "
+RPROMPT="${return_code}"
+
+ZSH_THEME_GIT_PROMPT_PREFIX="%F{$ZSH_GIT}‹"
+ZSH_THEME_GIT_PROMPT_SUFFIX="› %f"
+ZSH_THEME_RUBY_PROMPT_PREFIX="%F{$ZSH_ERROR}‹"
+ZSH_THEME_RUBY_PROMPT_SUFFIX="›%f"
+ZSH_THEME_VIRTUALENV_PREFIX="%F{$ZSH_VENV}("
+ZSH_THEME_VIRTUALENV_SUFFIX=")%f "
+
+}

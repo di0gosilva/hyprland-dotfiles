@@ -1,0 +1,106 @@
+@import "/home/diogo/Documentos/dotfiles/themes/current/colors.css"; 
+
+* {
+    font-family: "SF Pro Text", "JetBrainsMono Nerd Font Propo", sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+window#waybar {
+    background-color: @bg;
+    transition-property: background-color;
+    transition-duration: .5s;
+    border-bottom: 1px solid @accent;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+button {
+    /* Use box-shadow instead of border so the text isn't offset */
+    /* Avoid rounded borders under each button name */
+    box-shadow: inset 0 -3px transparent;
+    border: none;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+button:hover {
+    background: inherit;
+    box-shadow: inset 0 -2px transparent;
+}
+
+#workspaces button {
+    transition: 0.2s ease-in-out;
+    background-color: transparent;
+    color: @fg;
+    padding: 0 4px;
+    border-radius: 0;
+    margin: 0 1px;
+}
+
+#workspaces button:hover {
+    background: rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid @fg;
+}
+
+#workspaces button.focused {
+    background-color: @accent;
+    box-shadow: inset 0 -3px @fg;
+}
+
+#workspaces button.urgent {
+    background-color: @accent;
+}
+
+#workspaces button.active {
+    border-bottom: 1px solid @fg;
+    color: @fg; 
+    background: @accent;
+}
+
+#workspaces button.empty {
+    color: @accent;
+}
+
+#workspaces button.empty.active {
+    border-bottom: 1px solid @fg; 
+    color: @fg; 
+}
+
+#clock,
+#battery,
+#backlight,
+#network,
+#pulseaudio,
+#mpris,
+#mpd,
+#custom-weather,
+#custom-power,
+#custom-pacman {
+    padding: 0 6px;
+    color: @fg;
+    margin: 0 4px;
+}
+
+#network.disconnected,
+#pulseaudio.muted,
+#battery.critical,
+#baterry.charging {
+    color: @critical;
+}
+
+#window,
+#workspaces {
+    margin: 0 4px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;  
+}

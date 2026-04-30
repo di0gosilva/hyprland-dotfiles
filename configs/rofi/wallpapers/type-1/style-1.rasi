@@ -1,0 +1,85 @@
+/*****----- Configuration -----*****/
+configuration {
+    show-icons: true;
+}
+
+/*****----- Global -----*****/
+@import "shared/colors.rasi"
+@import "shared/fonts.rasi"
+
+/*****----- Window -----*****/
+window {
+    transparency: "real";
+    location: center;
+    anchor: center;
+    fullscreen: false;
+    width: 900px;
+
+    border: 1px solid;
+    border-radius: 2px;
+    border-color: @selected;
+    background-color: @background;
+}
+
+/*****----- Mainbox -----*****/
+mainbox {
+    spacing: 0px;
+    padding: 30px;
+    background-color: @background;
+    children: [ "listview" ];
+}
+
+/*****----- Listview (GRID) -----*****/
+listview {
+    columns: 4;
+    lines: 1;
+    spacing: 20px;
+
+    layout: vertical;
+    fixed-columns: true;
+    fixed-height: true;
+    scrollbar: false;
+
+    background-color: @background;
+}
+
+/*****----- Elements -----*****/
+element {
+    orientation: vertical;
+    padding: 20px;
+    border-radius: 2px;
+    background-color: @background-alt;
+    text-color: @background;
+}
+
+/* normal */
+element normal.normal {
+    background-color: @background-alt;
+}
+
+/* selected */
+element selected.normal {
+    background-color: @selected;
+    text-color: @background;
+}
+
+/*****----- Icon (Preview) -----*****/
+element-icon {
+    size: 160px;
+    border-radius: 6px;
+    background-color: transparent;
+}
+
+/*****----- Text -----*****/
+element-text {
+    margin: 10px 0px 0px 0px;
+    horizontal-align: 0.5;
+    background-color: @background-alt;
+    text-color: @selected;
+}
+
+
+element-text selected.normal {
+    background-color: @selected;
+    text-color: @background-alt;
+}
