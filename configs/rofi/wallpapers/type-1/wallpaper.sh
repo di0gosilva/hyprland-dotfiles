@@ -44,7 +44,7 @@ if [ ! -d "$THEME_DIR" ]; then
 fi
 
 # carrega cores do tema atual
-# source "$THEME_DIR/colors.env"
+source "$THEME_DIR/colors.env"
 
 # ===============================
 # APPLY ROFI
