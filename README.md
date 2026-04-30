@@ -1,4 +1,4 @@
-# 🎨 Menu de Temas
+# 🎭 Menu de Temas - Hyprland
 
 Este documento descreve como funciona o sistema de temas do projeto, incluindo a integração com o menu (rofi) e o uso de symlinks para aplicar estilos aos componentes.
 
@@ -18,7 +18,7 @@ Os temas são organizados em diretórios contendo variações de arquivos de est
 
 Exemplo:
 
-```
+```bash
 themes/
 ├── theme-1/
 │   ├── waybar.css
@@ -39,7 +39,7 @@ Ao invés de editar arquivos diretamente, o sistema utiliza **links simbólicos*
 
 Exemplo:
 
-```
+```bash
 ~/.config/waybar/style.css → themes/theme-1/waybar.css
 ~/.config/rofi/config.rasi → themes/theme-1/rofi.rasi
 ```
@@ -70,7 +70,7 @@ Fluxo:
 
 ## 🔁 Fluxo Completo
 
-```
+```bash
 Usuário abre menu (rofi)
         ↓
 Seleciona um tema
