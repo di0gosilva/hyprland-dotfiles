@@ -9,5 +9,5 @@ export ZSH_ERROR="red"
 export ZSH_HOST_SSH="red"
 
 # git / extras
-export ZSH_GIT="yellow"
-export ZSH_VENV="red"
+export ZSH_GIT="#FFE796"
+export ZSH_VENV="#FFE796"
