@@ -112,6 +112,21 @@ ln -sfn \
   "$HOME/.config/zsh/colors.zsh"
 
 # ===============================
+# APPS GTK
+# ===============================
+~/.config/theme-engine/apply-theme-gtk.sh "$THEME"
+
+# ===============================
+# APPS QT
+# ===============================
+~/.config/theme-engine/apply-theme-qt.sh "$THEME"
+
+# ===============================
+# SPICETIFY (SPOTIFY)
+# ===============================
+~/.config/theme-engine/apply-theme-spotify.sh "$THEME"
+
+# ===============================
 # PREVIEW NOTIFICAÇÃO DO DUNST
 # ===============================
 magick "$WALLDIR/$choice" \
@@ -137,3 +152,4 @@ notify-send \
   -u normal \
   -i "$CACHE" \
   "Tema '$THEME' aplicado com sucesso!"
+
